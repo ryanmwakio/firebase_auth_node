@@ -15,6 +15,7 @@ const csrfMiddleware = csrf({ cookie: true });
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+const router = express();
 
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("static"));
@@ -28,15 +29,15 @@ app.all("*", (req, res, next) => {
   next();
 });
 
-app.get("/login", function (req, res) {
-  res.render("login.html");
+router.get("/api/v1/login", function (req, res) {
+  res.status(200).render("login.html");
 });
 
-app.get("/signup", function (req, res) {
-  res.render("signup.html");
+router.get("/api/v1/signup", function (req, res) {
+  res.status(200).render("signup.html");
 });
 
-app.get("/profile", function (req, res) {
+router.get("/api/v1/profile", function (req, res) {
   const sessionCookie = req.cookies.session || "";
 
   admin
@@ -52,7 +53,7 @@ app.get("/profile", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  res.render("index.html");
+  res.status(200).render("index.html");
 });
 
 app.post("/sessionLogin", (req, res) => {
@@ -77,7 +78,7 @@ app.post("/sessionLogin", (req, res) => {
 
 app.get("/sessionLogout", (req, res) => {
   res.clearCookie("session");
-  res.redirect("/login");
+  res.redirect("/api/v1/login");
 });
 
 app.listen(PORT, () => {
