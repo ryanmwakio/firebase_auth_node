@@ -78,7 +78,7 @@ app.post("/sessionLogin", (req, res) => {
 
 app.get("/sessionLogout", (req, res) => {
   res.clearCookie("session");
-  res.redirect("/api/v2/login");
+  res.redirect("/api_v2/api/login");
 });
 
 app.listen(PORT, () => {
