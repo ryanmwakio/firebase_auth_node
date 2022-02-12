@@ -43,7 +43,7 @@ app.get("/profile", function (req, res) {
     .auth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((userData) => {
-      console.log("Logged in:", userData.email)
+      console.log("Logged in:", userData.email);
       res.render("profile.html");
     })
     .catch((error) => {
