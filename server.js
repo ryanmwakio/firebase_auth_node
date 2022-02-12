@@ -29,15 +29,15 @@ app.all("*", (req, res, next) => {
   next();
 });
 
-router.get("/api/v1/login", function (req, res) {
+router.get("/api_v2/api/login", function (req, res) {
   res.status(200).render("login.html");
 });
 
-router.get("/api/v1/signup", function (req, res) {
+router.get("/api_v2/kyc/user/create", function (req, res) {
   res.status(200).render("signup.html");
 });
 
-router.get("/api/v1/profile", function (req, res) {
+router.get("/api/v2/profile", function (req, res) {
   const sessionCookie = req.cookies.session || "";
 
   admin
@@ -78,7 +78,7 @@ app.post("/sessionLogin", (req, res) => {
 
 app.get("/sessionLogout", (req, res) => {
   res.clearCookie("session");
-  res.redirect("/api/v1/login");
+  res.redirect("/api/v2/login");
 });
 
 app.listen(PORT, () => {
